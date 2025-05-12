@@ -1,0 +1,47 @@
+<mat-toolbar color="transparent" class="toolbar">
+  <img src="images/playbutton.png" alt="Logo" class="logo1" />
+  <img src="images/logo.png" alt="Mohawk Medbuy Logo" class="logo" />
+  <div class="spacer"></div>
+  <div class="signin">
+    <button mat-raised-button class="button">
+        <img src="images/signinbtn.png" alt="User Icon" class="icon" />
+        Signin
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="main-container">
+  <h2>Welcome to Mohawk.</h2>
+  <p class="subtext">How can I help you today?</p>
+  
+  <div class="detail">
+    <mat-form-field appearance="outline" class="chat-input">
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="6"
+        placeholder="What do you want to know?"
+        formControlName="text"
+      ></textarea>
+
+      <span matSuffix>
+        <button mat-icon-button>
+        <img src="images/voiceinput.png" alt="Voice Input icon" class="icons" />
+          
+        </button>
+        <button mat-icon-button color="primary">
+        <img src="images/rightarrow.png" alt="Forward icon" class="icons" />
+        
+        </button>
+      </span>
+    </mat-form-field>
+  </div>
+</div>
+
+<footer class="footer">
+  <small>
+    By messaging Mohawk Medbuy AI, you agree to our
+    <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+  </small>
+</footer>
