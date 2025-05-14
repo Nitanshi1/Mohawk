@@ -8,14 +8,14 @@
     </button>
   </div>
 
-  <div class="search-container" *ngIf="sidebarOpen">
+  <!-- <div class="search-container" *ngIf="sidebarOpen">
     <mat-form-field appearance="outline">
       <input matInput placeholder="Search..." [(ngModel)]="searchText">
       <button mat-icon-button matSuffix (click)="search()">
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
-  </div>
+  </div> -->
 
   <div class="chat-groups" *ngIf="sidebarOpen">
     <div *ngFor="let group of chatGroups; let i = index" class="chat-group">

@@ -8,7 +8,7 @@ import { StartchatComponent } from './layouts/startchat/startchat.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet,StartchatComponent,MainComponent],
+  imports: [ RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

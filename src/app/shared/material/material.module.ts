@@ -16,6 +16,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
    
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSuffix,
     MatInputModule,
     MatSidenavModule,FormsModule,
+  MatDialogModule,
 ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
@@ -58,6 +60,7 @@ FormsModule,
     MatTabsModule,
     MatCardModule,
     MatIconModule,
+      MatDialogModule,
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,

@@ -1,0 +1,23 @@
+<div class="modal-backdrop" (click)="onCancel()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>SQL Query for your request</h2>
+      <button class="close-button" (click)="onCancel()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="sql-container">
+     
+        <pre><code class="sql-code">
+<span class="keyword">SELECT</span> [No_], [Name], [Vendor Name], [Start Date],[End Date]
+<span class="keyword">FROM</span> [Contract Header]
+<span class="keyword">WHERE</span> [End Date] >= DATEADD(month, 2, GETDATE())
+<span class="keyword">AND</span> [End Date] <= GETDATE();
+        </code></pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-cancel" (click)="onCancel()">CANCEL</button>
+      <button class="btn btn-copy" (click)="onCopyQuery()">COPY QUERY</button>
+    </div>
+  </div>
+</div>
