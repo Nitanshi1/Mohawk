@@ -1,0 +1,41 @@
+<div class="modal-backdrop">
+<div class="feedback-modal-container">
+  <div class="feedback-modal-header">
+    <h2>Please explain why you dislike it</h2>
+    <button *ngIf="isDialog" mat-icon-button mat-dialog-close class="close-button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button *ngIf="!isDialog" mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  <div class="feedback-modal-content">
+    <mat-form-field appearance="outline" class="feedback-textarea">
+      <textarea 
+        matInput 
+        [formControl]="feedbackText"
+        placeholder="Write your answer here..." 
+        rows="4">
+      </textarea>
+    </mat-form-field>
+  </div>
+  
+  <div class="feedback-modal-actions">
+    <button 
+      mat-stroked-button 
+      class="cancel-button" 
+      (click)="onCancel()">
+      CANCEL
+    </button>
+    <button 
+      mat-flat-button 
+      class="submit-button" 
+      color="primary" 
+      [disabled]="feedbackText.invalid"
+      (click)="onSubmit()">
+      SHARE RESPONSE
+    </button>
+  </div>
+</div>
+</div>

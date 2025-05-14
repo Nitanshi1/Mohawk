@@ -1,15 +1,18 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { MaterialModule } from '../../shared/material/material.module';
+
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MaterialModule } from '../../material/material.module';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sql-modal',
   standalone: true,
-  imports: [MaterialModule],
+  imports: [MaterialModule,NgIf],
   templateUrl: './sql-modal.component.html',
   styleUrl: './sql-modal.component.scss'
 })
 export class SqlModalComponent {
+    isDialog = false;
   // constructor(@Inject(MAT_DIALOG_DATA) public data: { sqlQuery: string }) {}
  @Input() sqlQuery: string = `SELECT [No_], [Name], [Vendor Name], [Start Date],[End Date]
 FROM [Contract Header]

@@ -3,8 +3,10 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { MainComponent } from './layouts/main/main.component';
 import { StartchatComponent } from './layouts/startchat/startchat.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { SqlModalComponent } from './shared/modals/sql-modal/sql-modal.component';
+import { DislikeModalComponent } from './shared/modals/dislike-modal/dislike-modal.component';
 
-import { SqlModalComponent } from './layouts/sql-modal/sql-modal.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'signIn', pathMatch: 'full' }, 
@@ -15,7 +17,7 @@ export const routes: Routes = [
 
   { path: 'modal', component:SqlModalComponent },
 
-
+  { path: 'feedback', component:DislikeModalComponent },
 
 
   { path: '**', redirectTo: 'signIn' } 
