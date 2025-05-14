@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../../shared/material/material.module';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-
-
 @Component({
-  selector: 'app-main',
+  selector: 'app-startchat',
   standalone: true,
-  imports: [MaterialModule],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  imports: [MaterialModule,SidebarComponent ],
+  templateUrl: './startchat.component.html',
+  styleUrl: './startchat.component.scss'
 })
-export class MainComponent {
+export class StartchatComponent {
 
 }

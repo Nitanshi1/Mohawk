@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
    
 @NgModule({
   declarations: [],
@@ -37,7 +38,8 @@ import { MatInputModule } from '@angular/material/input';
     MatTooltipModule,
     MatSuffix,
     MatInputModule,
-
+    MatSidenavModule,FormsModule,
+ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right',
@@ -48,7 +50,9 @@ import { MatInputModule } from '@angular/material/input';
   ],
   exports: [
 
-    MatInputModule,
+ReactiveFormsModule,
+FormsModule,
+    MatInputModule,MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,

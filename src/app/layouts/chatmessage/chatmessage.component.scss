@@ -1,0 +1,30 @@
+.message {
+  max-width: 70%;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  position: relative;
+  
+  &.user {
+    margin-left: auto;
+    background-color: #007bff;
+    color: white;
+    border-bottom-right-radius: 0.25rem;
+  }
+  
+  &.bot {
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-bottom-left-radius: 0.25rem;
+  }
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 0.25rem;
+  text-align: right;
+}
+
+
