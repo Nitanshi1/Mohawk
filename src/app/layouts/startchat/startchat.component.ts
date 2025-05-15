@@ -5,13 +5,10 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ChatService } from '../../services/chat.service';
 import { CommonModule } from '@angular/common';
 import { SqlModalComponent } from '../../shared/modals/sql-modal/sql-modal.component';
+import { Router } from '@angular/router';
+import { ChatMessage } from '../../models/chatmessage';
 
-interface ChatMessage {
-  type: 'question' | 'answer';
-  message: string;
-  timestamp?: Date;
-  sqlQuery?: string | null; // Make nullable
-}
+import { marked } from 'marked';
 
 @Component({
   selector: 'app-startchat',
@@ -36,7 +33,8 @@ export class StartchatComponent implements OnInit, AfterViewChecked {
   messages: ChatMessage[] = [];
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private chatService: ChatService) {
+
+  constructor(private fb: FormBuilder, private chatService: ChatService,private router:Router) {
     this.chatForm = this.fb.group({
       question: ['', Validators.required]
     });
@@ -90,30 +88,30 @@ export class StartchatComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  private sendQuestionToService(question: string): void {
-    if (!this.conversationId) {
-      console.error('No conversation ID available');
-      this.handleApiError();
-      return;
-    }
+  // private sendQuestionToService(question: string): void {
+  //   if (!this.conversationId) {
+  //     console.error('No conversation ID available');
+  //     this.handleApiError();
+  //     return;
+  //   }
     
-    this.chatService.askQuestion(this.userId, this.conversationId, question)
-      .subscribe({
-        next: (res: any) => {
-          // Add bot response to chat
-          this.messages.push({
-            type: 'answer',
-            message: res?.response || 'No response received.',
-            timestamp: new Date()
-          });
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error('API Error:', err);
-          this.handleApiError();
-        }
-      });
-  }
+  //   this.chatService.askQuestion(this.userId, this.conversationId, question)
+  //     .subscribe({
+  //       next: (res: any) => {
+  //         // Add bot response to chat
+  //         this.messages.push({
+  //           type: 'answer',
+  //           message: res?.response || 'No response received.',
+  //           timestamp: new Date()
+  //         });
+  //         this.loading = false;
+  //       },
+  //       error: (err) => {
+  //         console.error('API Error:', err);
+  //         this.handleApiError();
+  //       }
+  //     });
+  // }
 
   private handleApiError(): void {
     this.messages.push({
@@ -125,9 +123,7 @@ export class StartchatComponent implements OnInit, AfterViewChecked {
   }
 
   startNewChat(): void {
-    this.messages = [];
-    this.conversationId = undefined;
-    this.chatForm.reset();
+ this.router.navigate(['/chat'])
   }
 
 
@@ -136,31 +132,29 @@ export class StartchatComponent implements OnInit, AfterViewChecked {
   showSqlModal = false;
   currentSqlQuery: string | null = null;
 
-  // ... other methods ...
-
-  // private sendQuestionToService(question: string): void {
-  //   if (!this.conversationId) {
-  //     this.handleApiError();
-  //     return;
-  //   }
+  private sendQuestionToService(question: string): void {
+    if (!this.conversationId) {
+      this.handleApiError();
+      return;
+    }
     
-  //   this.chatService.askQuestion(this.userId, this.conversationId, question)
-  //     .subscribe({
-  //       next: (res: any) => {
-  //         const sqlQuery = this.extractSqlQuery(res);
+    this.chatService.askQuestion(this.userId, this.conversationId, question)
+      .subscribe({
+        next: (res: any) => {
+          const sqlQuery = this.extractSqlQuery(res);
           
-  //         this.messages.push({
-  //           type: 'answer',
-  //           message: res?.response || 'No response received.',
-  //           timestamp: new Date(),
-  //           sqlQuery: sqlQuery // Can be null
-  //         });
+          this.messages.push({
+            type: 'answer',
+            message: res?.response || 'No response received.',
+            timestamp: new Date(),
+            sqlQuery: sqlQuery // Can be null
+          });
           
-  //         this.loading = false;
-  //       },
-  //       error: (err) => this.handleApiError()
-  //     });
-  // }
+          this.loading = false;
+        },
+        error: (err) => this.handleApiError()
+      });
+  }
 
   private extractSqlQuery(response: any): string | null {
     // 1. Check for explicit SQL query

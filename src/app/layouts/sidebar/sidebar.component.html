@@ -1,10 +1,27 @@
 <div class="chat-sidebar" [class.sidebar-collapsed]="!sidebarOpen">
   <div class="chat-sidebar-header">
     <h2 *ngIf="sidebarOpen">Chat history</h2>
-    <button mat-icon-button aria-label="Toggle sidebar" (click)="toggleSidebar()">
-      <img *ngIf="sidebarOpen" src="images/closeplaybutton.png" alt="Close Sidebar" class="icons" />
-      <img *ngIf="!sidebarOpen" src="images/playbutton.png" alt="Open Sidebar" class="icons" />
-    </button>
+<button 
+  mat-icon-button 
+  aria-label="Toggle sidebar" 
+  (click)="toggleSidebar()"
+  [matTooltip]="sidebarOpen ? 'Close Sidebar' : 'Open Sidebar'" 
+  matTooltipPosition="below"
+>
+  <img 
+    *ngIf="sidebarOpen" 
+    src="images/closeplaybutton.png" 
+    alt="Close Sidebar" 
+    class="icons" 
+  />
+  <img 
+    *ngIf="!sidebarOpen" 
+    src="images/playbutton.png" 
+    alt="Open Sidebar" 
+    class="icons" 
+  />
+</button>
+
   </div>
 
   <!-- <div *ngIf="isLoading && sidebarOpen" class="loading">

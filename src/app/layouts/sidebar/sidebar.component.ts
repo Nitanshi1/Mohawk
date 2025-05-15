@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../shared/material/material.module';
 import { NgFor, NgIf } from '@angular/common';
-import { Conversation, ConversationService } from '../../services/conversation.service';
+import {  ConversationService } from '../../services/conversation.service';
+import { Conversation } from '../../models/conversation';
+import { ChatGroup } from '../../models/chatgroup';
 
-interface ChatGroup {
-  title: string;
-  conversations: Conversation[];
-}
 
 @Component({
   selector: 'app-sidebar',
@@ -34,6 +32,8 @@ export class SidebarComponent implements OnInit {
         next: (response:any) => {
           this.organizeConversations(response.conversations);
           this.isLoading = false;
+          console.log(response);
+          
         },
         error: (err:any) => {
           this.error = 'Failed to load conversations';
@@ -79,19 +79,21 @@ export class SidebarComponent implements OnInit {
   }
 
   deleteConversation(groupIndex: number, conversationIndex: number): void {
-    const conversation = this.chatGroups[groupIndex].conversations[conversationIndex];
-    
-    this.conversationService.deleteConversation(conversation.conversation_id)
-      .subscribe({
-        next: () => {
-          this.chatGroups[groupIndex].conversations.splice(conversationIndex, 1);
-          if (this.chatGroups[groupIndex].conversations.length === 0) {
-            this.chatGroups.splice(groupIndex, 1);
-          }
-        },
-        error: (err:any )=> {
-          console.error('Error deleting conversation:', err);
+  const conversation = this.chatGroups[groupIndex].conversations[conversationIndex];
+  const userId = this.userId
+  
+  this.conversationService.deleteConversation(userId, conversation.conversation_id)
+    .subscribe({
+      next: () => {
+        this.chatGroups[groupIndex].conversations.splice(conversationIndex, 1);
+        if (this.chatGroups[groupIndex].conversations.length === 0) {
+          this.chatGroups.splice(groupIndex, 1);
         }
-      });
-  }
+      },
+      error: (err: any) => {
+        console.error('Error deleting conversation:', err);
+      }
+    });
+}
+
 }

@@ -13,5 +13,5 @@ import { StartchatComponent } from './layouts/startchat/startchat.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Mohawk_Frontend';
+  title = 'Mohawk';
 }
