@@ -2,7 +2,7 @@
   width: 280px;
   height: 100vh;
   background-color: white;
-
+padding-left: 18px;
   transition: width 0.3s ease;
   overflow: hidden;
   display: flex;
@@ -30,9 +30,9 @@
     margin: 0;
     color: rgba(51, 51, 51, 1);
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 100%;
-    padding-left: 10px;
+
     font-family: "General Sans", "Helvetica Neue", sans-serif;
   }
 }
@@ -83,7 +83,7 @@
 }
 
 .group-title {
-  padding: 16px 16px 0px 25px;
+  padding: 16px 16px 0px 5px;
   font-size: 16px;
   font-weight: 600;
   // color: #757575;
@@ -199,35 +199,13 @@
   --mdc-outlined-text-field-outline-width: 1px !important;
   --mdc-outlined-text-field-input-text-font: "General Sans", "Helvetica Neue",
     sans-serif !important;
-  --mdc-outlined-text-field-container-shape: 30px !important;
+  --mdc-outlined-text-field-container-shape: 12px !important;
 }
 
 
-
-
-
-.chat-sidebar {
-  width: 280px;
-  height: 100vh;
-  background-color: white;
-  border-right: 1px solid #e0e0e0;
-  transition: width 0.3s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-
-  &.sidebar-collapsed {
-    width: 60px;
-  }
+.conversation-title
+{
+  padding-left: 10px;
+  padding-right: auto;
+  font-size: 14px;
 }
-
-.icons {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
-}
-
-.chat-sidebar-header button:hover .icons {
-  transform: scale(1.1);
-}
-

@@ -1,30 +1,25 @@
-<div class="modal-backdrop" (click)="onCancel()">
-  <div class="modal-container" (click)="$event.stopPropagation()">
-    <div class="modal-header">
-      <h2>SQL Query for your request</h2>
-
-      <button *ngIf="isDialog" mat-icon-button mat-dialog-close class="close-button">
+<div *ngIf="visible" class="sql-modal-overlay" (click)="onClose()">
+  <div class="sql-modal-content" (click)="$event.stopPropagation()">
+    <mat-toolbar color="primary" class="modal-header">
+      <span>SQL Query</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="onClose()">
         <mat-icon>close</mat-icon>
       </button>
-      <button *ngIf="!isDialog" mat-icon-button class="close-button" (click)="onCancel()">
-        <mat-icon>close</mat-icon>
+    </mat-toolbar>
+
+    <div class="sql-content">
+      <pre *ngIf="sqlQuery; else noQuery">{{ sqlQuery }}</pre>
+      <ng-template #noQuery>
+        <p class="no-query-message">No SQL query available for this response.</p>
+      </ng-template>
+    </div>
+
+    <mat-toolbar class="modal-footer">
+      <button *ngIf="sqlQuery" mat-raised-button color="primary" (click)="onCopy()">
+        <mat-icon>content_copy</mat-icon> Copy SQL
       </button>
-    </div>
-
-    <div class="modal-body">
-      <div class="sql-container">
-        <pre><code class="sql-code">
-<span class="keyword">SELECT</span> [No_], [Name], [Vendor Name], [Start Date],[End Date]
-<span class="keyword">FROM</span> [Contract Header]
-<span class="keyword">WHERE</span> [End Date] >= DATEADD(month, 2, GETDATE())
-<span class="keyword">AND</span> [End Date] <= GETDATE();
-        </code></pre>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn btn-cancel" (click)="onCancel()">CANCEL</button>
-      <button class="btn btn-copy" (click)="onCopyQuery()">COPY QUERY</button>
-    </div>
+      <button mat-button (click)="onClose()">Close</button>
+    </mat-toolbar>
   </div>
 </div>
