@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ChatService {
-  private apiUrl = 'https://dev.mohawkmedbuy.ai/chat';
+  private apiUrl = 'https://dev.mohawkmedbuy.ai';
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +16,10 @@ export class ChatService {
       conversation_id: conversationId,
       question: question,
     };
-    return this.http.post(`${this.apiUrl}/ask`, payload); 
+    return this.http.post(`${this.apiUrl}/chat/ask`, payload); 
   }
-
+  generateConvId():Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/conversation/new-chat`,{})
+  }
   
 }
